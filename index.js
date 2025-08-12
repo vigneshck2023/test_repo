@@ -4,6 +4,7 @@ const {initializeDatabase} = require("./db/db.connect");
 const Recipe = require("./models/recipe.models");
 app.use(express.json())
 initializeDatabase();
+require('dotenv').config();
 
 
 app.get("/", (req,res) => {
@@ -210,7 +211,8 @@ app.delete("/recipes/:recipeId", async (req,res) => {
     }
     
 })
-const PORT = 5050;
-app.listen(PORT,() => {
-    console.log(`Running on port ${PORT}`);
-})
+const PORT = process.env.PORT || 5050;
+
+app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
+});
